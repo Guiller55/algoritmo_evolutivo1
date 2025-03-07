@@ -4,7 +4,8 @@ import java.util.Random;
 class Individuo {
     private String genes;
     private int fitness;
-    private static final int LONGITUD = 10; 
+    private double proba; //Probabilidad que se le asignará a cada individuo para formar una funcion de distribucion
+    public static final int LONGITUD = 50; 
 
     public Individuo() {
         Random rand = new Random();
@@ -16,8 +17,19 @@ class Individuo {
         calculaFitness();
     }
 
+    /**
+     * Asigna al individuo un valor entero del 0 al 10
+     */
     public void calculaFitness(){
         this.fitness =  (int) genes.chars().filter(ch -> ch == '1').count();
+    }
+
+    public void setProba(double proba){
+        this.proba = proba;
+    }
+
+    public double getProba(){
+        return this.proba;
     }
 
     public int getFitness(){
