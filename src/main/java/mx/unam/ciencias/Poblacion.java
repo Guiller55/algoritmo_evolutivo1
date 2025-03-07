@@ -110,10 +110,19 @@ class Poblacion {
         char[] genes = individuo.getGenes().toCharArray();
         Random rand = new Random();
         int indice = rand.nextInt(individuo.LONGITUD);
+        
         if(genes[indice] == '1'){
-            contadorMutacionMala +=1;
+            contadorMutacionMala += 1;
+            System.out.print("MUTACION MALA #" + contadorMutacionMala);
+            genes[indice] = 'A';
+        } else {
+            if(genes[indice] == '0'){
+                System.out.println("MUTACION BUENA #" + contadorMutaciones);
+                contadorMutaciones += 1;
+                genes[indice] = '1';
+            }
         }
-        genes[indice] = (genes[indice] == '1') ? '0' : '1';
+      //  genes[indice] = (genes[indice] == '1') ? '0' : '1';
 
         individuo.setGenes(new String(genes));
     }
@@ -130,8 +139,6 @@ class Poblacion {
             double probMutar = Math.random();
             nuevos[i] = cruzar(selNatural(), selNatural());
             if(probMutar < 0.01){
-                contadorMutaciones += 1;
-                System.out.println("M U T A C I O N #" + contadorMutaciones);
                 mutar(nuevos[i]);
             }
         }
